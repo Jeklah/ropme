@@ -1,0 +1,35 @@
+ok so there's a fair bit to this fucker, it's taken me months of videos, rewatching
+and asking on discord for a bit to get an answer lol so i may miss something but...
+
+ropme has a buffer overflow that allows you to inject a memory address to get a shell
+and from there you get the flag.
+locally, you just get a shell in sh, not your normal shell. that'll be how you know it works.
+
+we can use ghidra to look at main
+we can see the variable list and the order it's in, which is the order it goes on the stack.
+by looking at the code we can see that at the end there is a check for a variable, local_48
+to see if it has changed from 1337bab3 to d3adc0de or whatever it is.
+
+if we look at the size of the variable types, we can see how many characters we would need to
+overflow to the position to write the variable we want.
+
+that's the simple version. going back over research, there is a lot to it. below are some links
+and information which will be useful.
+
+https://medium.com/@gabriel.pirjolescu/pwn-hack-the-box-ropme-write-up-b40179cf5573
+https://www.youtube.com/watch?v=AaKLMc_J9z8
+https://resources.infosecinstitute.com/topic/return-oriented-programming-rop-attacks/
+https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/rop-chaining-return-oriented-programming
+
+useful tools:
+
+ROPGadget
+pwninit
+one_gadget (? i barely have had chance to use this properly)
+elfpatch
+
+the approach taken here does work, with some research. but unless you're lucky, it won't on remote.
+but locally it is a good test, if i recall correctly. and explains it well ish.
+
+I will update this with a better explanation about remote, and hopefully the code when i have the time.
+In the meantime, this should give you a good idea at least. hf and gl hh
