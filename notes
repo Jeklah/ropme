@@ -27,8 +27,11 @@ ROPGadget
 pwninit
 one_gadget (? i barely have had chance to use this properly)
 elfpatch
+radare2
+pwndbg
+pwntools
 
-the approach taken here does work, with some research. but unless you're lucky, it won't on remote.
+the approach taken in the youtube video  does work, with some research. but unless you're lucky, it won't on remote.
 but locally it is a good test, if i recall correctly. and explains it well ish.
 
 I will update this with a better explanation about remote, and hopefully the code when i have the time.
