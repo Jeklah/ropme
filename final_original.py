@@ -57,7 +57,7 @@ log.info(f'puts_got_leak: {hex(puts_got_leak)}')
 # which is libc6_2.23-0ubuntu9_amd64. So what we want to do is download
 # that, copy it to our folder, rename it to libc.so.6 so our script
 # runs the correct version of libc that is running on the remote
-# so we have the correct addresses working out, and our payload works.
+# so we have the correct addresses working out, so our payload works.
 
 
 # We can find the libc base address and then search it to
