@@ -34,5 +34,14 @@ pwntools
 the approach taken in the youtube video  does work, with some research. but unless you're lucky, it won't on remote.
 but locally it is a good test, if i recall correctly. and explains it well ish.
 
-I will update this with a better explanation about remote, and hopefully the code when i have the time.
-In the meantime, this should give you a good idea at least. hf and gl hh
+I have updated the code with notes explaining, but basically, the remote server uses a different version of libc.
+For this you need to patch ropme with either elfpatch and binutils or pwninit. I chose the latter.
+Instructions in final.py comments.
+
+I have also added a working version of the original hack, also with explanation in the comments on
+how that original hack works, where it didn't before.
+
+The libc.so.6.original and .hacked files are the libcs that work for each hack respectively.
+Instructions on how to get them in the comments in the notes.
+
+pattern.txt isn't really needed, as the scripts do the same thing but i kept anyway.
