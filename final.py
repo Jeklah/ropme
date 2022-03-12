@@ -35,6 +35,30 @@ puts_got_leak = u64(p.recvline()[:-1].ljust(8, b'\x00'))
 
 log.info(f'puts_got_leak: {hex(puts_got_leak)}')
 ######################################################
+#           HACKED EXPLANATION
+#
+# So, after some troubles (explained in original notes)
+# I was provided with this working solution using one_gadget
+# which, I still don't really know what it does, I think it just
+# uses the correct gadget somehow...anyway.
+# What I ended up doing to get this hack is to download any version
+# of libc, after finding suitable versions searching for the
+# memory addresses of puts and fgets like in the original.
+# Then moving it to this folder and renaming it to libc.so.6.
+# Next we have to do some patching, using elfpatch and binutils, or it can be
+# automated using pwninit, which is what I did:
+#
+# pwninit --bin ropme --libc libc.so.6
+#
+# This generates the patched ropme file as well as ld-2.23.so, which
+# you don't need for either version, so you can delete it as well as
+# solve.py it generates that's just a template.
+# After doing the above, this script will work for you now you have the
+# patched ropme.
+#
+# That is how this patched hacky way of doing it works.
+# ...apart from the one_gadget line...idk, don't ask me about that lol
+
 
 # libc_base = puts_got_leak - libc.symbols['puts']
 # system_offset = libc.symbols['system']
